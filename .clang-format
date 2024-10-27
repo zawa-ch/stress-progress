@@ -1,0 +1,35 @@
+Language: Cpp
+Standard: c++20
+BasedOnStyle: LLVM
+LineEnding: LF
+
+UseTab: Always
+TabWidth: 2
+IndentWidth: 2
+ContinuationIndentWidth: 2
+ConstructorInitializerIndentWidth: 2
+AlignAfterOpenBracket: BlockIndent
+AlignConsecutiveAssignments:
+    Enabled: false
+AlignConsecutiveDeclarations:
+    Enabled: false
+AlignConsecutiveMacros:
+    Enabled: false
+AlignOperands: DontAlign
+LambdaBodyIndentation: OuterScope
+RequiresExpressionIndentation: OuterScope
+
+ColumnLimit: 0
+
+PointerAlignment: Left
+
+IncludeBlocks: Regroup
+
+StatementAttributeLikeMacros:
+    - 'Q_EMIT'
+StatementMacros:
+    - 'Q_UNUSED'
+    - 'Q_OBJECT'
+TypenameMacros:
+WhitespaceSensitiveMacros:
+
