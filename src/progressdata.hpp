@@ -11,7 +11,7 @@ class ProgressData : public QObject {
 	Q_PROPERTY(QString unit READ unit WRITE setUnit NOTIFY unitChanged FINAL)
 
 public:	// constructor
-	ProgressData(QObject* parent = nullptr) : QObject(parent) {}
+	explicit ProgressData(QObject* parent = nullptr) : QObject(parent) {}
 
 private: // member values
 	QString title_;
@@ -30,12 +30,12 @@ signals:
 	void unitChanged(const QString&);
 
 public:	// properties
-	[[nodiscard]] QString title() const noexcept { return title_; }
-	[[nodiscard]] QString description() const noexcept { return description_; }
-	[[nodiscard]] QString completeText() const noexcept { return complete_text_; }
-	[[nodiscard]] qint64 minValue() const noexcept { return min_value_; }
-	[[nodiscard]] qint64 maxValue() const noexcept { return max_value_; }
-	[[nodiscard]] QString unit() const noexcept { return unit_; }
+	[[nodiscard]] const QString& title() const noexcept { return title_; }
+	[[nodiscard]] const QString& description() const noexcept { return description_; }
+	[[nodiscard]] const QString& completeText() const noexcept { return complete_text_; }
+	[[nodiscard]] const qint64& minValue() const noexcept { return min_value_; }
+	[[nodiscard]] const qint64& maxValue() const noexcept { return max_value_; }
+	[[nodiscard]] const QString& unit() const noexcept { return unit_; }
 
 	void setTitle(const QString& newvalue) noexcept {
 		title_ = newvalue;

@@ -22,14 +22,13 @@ set(PROJECT_SOURCES
 	src/mainwindow.h
 	src/mainwindow.ui
 	src/progressdata.hpp
+	src/progresswidget.cpp
+	src/progresswidget.hpp
 	${TS_FILES}
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-	qt_add_executable(stress-progress
-		MANUAL_FINALIZATION
-		${PROJECT_SOURCES}
-	)
+	qt_add_executable(stress-progress MANUAL_FINALIZATION ${PROJECT_SOURCES})
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET stress-progress APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
@@ -48,6 +47,10 @@ else()
 endif()
 
 target_link_libraries(stress-progress PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_include_directories(stress-progress
+	PRIVATE
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
