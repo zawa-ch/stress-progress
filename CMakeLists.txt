@@ -1,3 +1,5 @@
+#	SPDX-FileCopyrightText: 2024 zawa-ch.
+#	SPDX-License-Identifier: GPL-3.0-only
 cmake_minimum_required(VERSION 3.16)
 
 project(stress-progress
@@ -6,7 +8,7 @@ project(stress-progress
 	LANGUAGES CXX
 )
 set(${PROJECT_NAME}_AUTHOR "2024 zawa-ch.")
-set(${PROJECT_NAME}_LICENSE "GPLv3")
+set(${PROJECT_NAME}_LICENSE "GNU GPL version 3.0")
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)

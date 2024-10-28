@@ -1,3 +1,5 @@
+//	SPDX-FileCopyrightText: 2024 zawa-ch.
+//	SPDX-License-Identifier: GPL-3.0-only
 #ifndef VERSIONDIALOG_HPP
 #define VERSIONDIALOG_HPP
 #include "applicationdomain.hpp"
@@ -28,7 +30,7 @@ public:
 	VersionDialog(QWidget* parent = nullptr) : ui(std::make_unique<UI>(this)) {
 		setMinimumSize(200, 140);
 		connect(&ui->buttons, SIGNAL(accepted()), SLOT(accept()));
-		ui->body.setText("<span style=\"font-size:" + QString::number(font().pointSizeF() * 1.5f) + "pt;\">" + tr("application_title") + "</span><br/>" + ApplicationDomain::name + " " + ApplicationDomain::version + "<br/>" + ApplicationDomain::author + " licensed under " + ApplicationDomain::license + "<br/>" + ApplicationDomain::url);
+		ui->body.setText("<span style=\"font-size:" + QString::number(font().pointSizeF() * 1.5f) + "pt;\">" + tr("application_title") + "</span><br/>" + ApplicationDomain::name + " " + ApplicationDomain::version + "<br/>Copyright " + ApplicationDomain::author + " licensed under " + ApplicationDomain::license + "<br/>" + ApplicationDomain::url);
 	}
 
 private:

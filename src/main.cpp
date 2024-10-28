@@ -1,3 +1,5 @@
+//	SPDX-FileCopyrightText: 2024 zawa-ch.
+//	SPDX-License-Identifier: GPL-3.0-only
 #include "mainwindow.h"
 
 #include <QApplication>

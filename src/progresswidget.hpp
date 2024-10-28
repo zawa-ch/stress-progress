@@ -1,3 +1,5 @@
+//	SPDX-FileCopyrightText: 2024 zawa-ch.
+//	SPDX-License-Identifier: GPL-3.0-only
 #ifndef PROGRESSWIDGET_HPP
 #define PROGRESSWIDGET_HPP
 #include "progressdata.hpp"
