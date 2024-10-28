@@ -17,11 +17,14 @@ set(TS_FILES
 )
 
 set(PROJECT_SOURCES
+	src/completedialog.hpp
 	src/main.cpp
 	src/mainwindow.cpp
 	src/mainwindow.h
 	src/mainwindow.ui
 	src/progressdata.hpp
+	src/progressdialog.cpp
+	src/progressdialog.hpp
 	src/progresswidget.cpp
 	src/progresswidget.hpp
 	${TS_FILES}
