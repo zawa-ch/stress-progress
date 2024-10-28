@@ -31,6 +31,7 @@ private slots:
 	void execButton_onClicked();
 	void action_Quit_onTriggered();
 	void action_Execute_onTriggered();
+	void action_About_onTriggered();
 
 private:
 	void run_progress();

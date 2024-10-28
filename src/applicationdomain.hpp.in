@@ -1,0 +1,11 @@
+#ifndef APPLICATIONDOMAIN_HPP
+#define APPLICATIONDOMAIN_HPP
+class ApplicationDomain {
+public:
+	static constexpr const char* name = "@PROJECT_NAME@";
+	static constexpr const char* author = "@stress-progress_AUTHOR@";
+	static constexpr const char* license = "@stress-progress_LICENSE@";
+	static constexpr const char* version = "@stress-progress_VERSION_MAJOR@.@stress-progress_VERSION_MINOR@.@stress-progress_VERSION_PATCH@";
+	static constexpr const char* url = "@stress-progress_HOMEPAGE_URL@";
+};
+#endif

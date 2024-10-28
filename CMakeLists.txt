@@ -1,6 +1,12 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(stress-progress VERSION 0.1 LANGUAGES CXX)
+project(stress-progress
+	VERSION 0.1.0
+	HOMEPAGE_URL https://github.com/zawa-ch/stress-progress
+	LANGUAGES CXX
+)
+set(${PROJECT_NAME}_AUTHOR "2024 zawa-ch.")
+set(${PROJECT_NAME}_LICENSE "GPLv3")
 
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -11,6 +17,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
+
+configure_file(src/applicationdomain.hpp.in src/applicationdomain.hpp)
 
 set(TS_FILES
 	i18n/ja_JP.ts
@@ -27,6 +35,7 @@ set(PROJECT_SOURCES
 	src/progressdialog.hpp
 	src/progresswidget.cpp
 	src/progresswidget.hpp
+	src/versiondialog.hpp
 )
 
 file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/i18n)
@@ -56,6 +65,7 @@ target_link_libraries(stress-progress PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 target_include_directories(stress-progress
 	PRIVATE
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}/src>
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

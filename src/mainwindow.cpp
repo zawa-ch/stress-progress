@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 
 #include "./ui_mainwindow.h"
+#include "versiondialog.hpp"
 
 MainWindow::MainWindow(QWidget* parent)
 	: QMainWindow(parent), ui(new Ui::MainWindow), dialog(std::make_unique<ProgressDialog>(this)) {
@@ -12,6 +13,7 @@ MainWindow::MainWindow(QWidget* parent)
 	connect(ui->execButton, SIGNAL(clicked()), SLOT(execButton_onClicked()));
 	connect(ui->action_Quit, SIGNAL(triggered()), SLOT(action_Quit_onTriggered()));
 	connect(ui->action_Execute, SIGNAL(triggered()), SLOT(action_Execute_onTriggered()));
+	connect(ui->action_About, SIGNAL(triggered()), SLOT(action_About_onTriggered()));
 }
 MainWindow::~MainWindow() {
 	delete ui;
@@ -36,6 +38,10 @@ void MainWindow::action_Quit_onTriggered() {
 }
 void MainWindow::action_Execute_onTriggered() {
 	run_progress();
+}
+void MainWindow::action_About_onTriggered() {
+	auto dialog = VersionDialog(this);
+	dialog.exec();
 }
 void MainWindow::run_progress() {
 	ProgressData pdata;
