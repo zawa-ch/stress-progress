@@ -13,7 +13,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
 
 set(TS_FILES
-	localize/ja_JP.ts
+	i18n/ja_JP.ts
 )
 
 set(PROJECT_SOURCES
@@ -27,26 +27,29 @@ set(PROJECT_SOURCES
 	src/progressdialog.hpp
 	src/progresswidget.cpp
 	src/progresswidget.hpp
-	${TS_FILES}
 )
 
+file(MAKE_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/i18n)
+configure_file(i18n.qrc ${CMAKE_CURRENT_BINARY_DIR} COPYONLY)
+set_source_files_properties(${TS_FILES} PROPERTIES OUTPUT_LOCATION "i18n")
+
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-	qt_add_executable(stress-progress MANUAL_FINALIZATION ${PROJECT_SOURCES})
+	qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+	qt_add_executable(stress-progress MANUAL_FINALIZATION ${PROJECT_SOURCES} ${QM_FILES})
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET stress-progress APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
 #                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
 # For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 
-	qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 else()
 	if(ANDROID)
 		add_library(stress-progress SHARED ${PROJECT_SOURCES})
 # Define properties for Android with Qt 5 after find_package() calls as:
 #    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
 	else()
-		add_executable(stress-progress ${PROJECT_SOURCES})
+		add_executable(stress-progress ${PROJECT_SOURCES} ${CMAKE_CURRENT_BINARY_DIR}/i18n.qrc)
 	endif()
-	qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+	qt5_add_translation(QM_FILES ${TS_FILES})
 endif()
 
 target_link_libraries(stress-progress PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
