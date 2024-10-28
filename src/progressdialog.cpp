@@ -13,6 +13,7 @@ ProgressDialog::ProgressDialog(QWidget* parent) : QDialog(parent), ui(std::make_
 }
 void ProgressDialog::apply(const ProgressData& data) {
 	ui->progress.apply(data);
+	setWindowTitle(data.title);
 }
 void ProgressDialog::start() {
 	ui->progress.startTimer();
