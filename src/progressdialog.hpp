@@ -33,5 +33,9 @@ public slots:
 
 private slots:
 	void progress_onComplete(const QString& text);
+
+protected:
+	virtual void reject() override;
+	virtual void closeEvent(QCloseEvent* e) override;
 };
 #endif

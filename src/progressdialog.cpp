@@ -3,6 +3,7 @@
 #include <QCloseEvent>
 
 ProgressDialog::UI::UI(QWidget* parent) : layout(parent), progress(parent), complete(parent) {
+	progress.setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
 	complete.setModal(true);
 	layout.addWidget(&progress);
 	layout.setMargin(6);
@@ -26,4 +27,12 @@ void ProgressDialog::progress_onComplete(const QString& text) {
 	ui->complete.setText(text);
 	ui->complete.exec();
 	done(0);
+}
+void ProgressDialog::reject() {
+	stop();
+	QDialog::reject();
+}
+void ProgressDialog::closeEvent(QCloseEvent* e) {
+	e->accept();
+	reject();
 }

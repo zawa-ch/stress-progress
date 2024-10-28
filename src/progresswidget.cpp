@@ -7,8 +7,8 @@ ProgressWidget::UI::UI(QWidget* parent) : layout(parent), descriptionlabel(paren
 	init_layout();
 }
 void ProgressWidget::UI::init_layout() {
-	descriptionlabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-	progresslabel.setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
+	descriptionlabel.setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::MinimumExpanding);
+	progresslabel.setSizePolicy(QSizePolicy::MinimumExpanding, QSizePolicy::Fixed);
 	progressbar.setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Fixed);
 	progressbar.setTextVisible(false);
 	layout.addWidget(&descriptionlabel);
@@ -17,7 +17,7 @@ void ProgressWidget::UI::init_layout() {
 }
 #pragma endregion
 #pragma region ProgressWidget
-ProgressWidget::ProgressWidget(QWidget* parent) : QWidget(parent), ui(std::make_unique<UI>(this)) {
+ProgressWidget::ProgressWidget(QWidget* parent) : QWidget(parent), ui(std::make_unique<UI>(this)), timer(std::make_unique<QTimer>(this)) {
 	this->connect(timer.get(), SIGNAL(timeout()), SLOT(timer_onTimeout()));
 	setMinimumSize(320, 60);
 	ui->progresslabel.setText(build_progl());
@@ -111,7 +111,7 @@ void ProgressWidget::reset() {
 	emit valueChanged(value_);
 }
 void ProgressWidget::startTimer() {
-	timer->start();
+	timer->start(data.timerInterval);
 }
 void ProgressWidget::stopTimer() {
 	timer->stop();
