@@ -1,0 +1,9 @@
+<!--
+	SPDX-FileCopyrightText: 2024 zawa-ch.
+	SPDX-License-Identifier: GPL-3.0-only
+-->
+<RCC>
+	<qresource prefix="">
+		<file>i18n/ja_JP.qm</file>
+	</qresource>
+</RCC>
